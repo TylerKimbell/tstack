@@ -1,0 +1,3 @@
+# Codex settings. Claude reads disable-model-invocation in SKILL.md instead.
+policy:
+  allow_implicit_invocation: false

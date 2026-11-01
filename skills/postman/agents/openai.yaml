@@ -1,0 +1,4 @@
+interface:
+  display_name: "Postman"
+  short_description: "Create importable API requests and collections"
+  default_prompt: "Use $postman to create an importable Postman request or collection for this API task, reusing my existing setup."
