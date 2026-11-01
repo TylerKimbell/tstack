@@ -1,11 +1,11 @@
 {
-  "name": "portable-skills",
+  "name": "tstack",
   "version": "0.1.0",
   "description": "General-purpose agent skills that work in any project: cut AI tells from writing, review technical docs, restate a reply plainly, and package API calls as Postman collections.",
   "author": {
     "name": "Tyler Kimbell"
   },
-  "repository": "https://github.com/TylerKimbell/portable-skills",
+  "repository": "https://github.com/TylerKimbell/tstack",
   "license": "MIT",
   "keywords": ["writing", "style", "documentation", "postman", "api"]
 }

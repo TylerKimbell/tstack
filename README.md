@@ -1,4 +1,4 @@
-# portable-skills
+# tstack
 
 Agent skills that work in any project. None of them reads project files to do its job, so you can install them once and use them everywhere. They run in Claude Code as a plugin and in OpenAI Codex as plain skill folders.
 
@@ -14,26 +14,26 @@ Agent skills that work in any project. None of them reads project files to do it
 Add the marketplace, then install the plugin:
 
 ```
-/plugin marketplace add TylerKimbell/portable-skills
-/plugin install portable-skills@portable-skills
+/plugin marketplace add TylerKimbell/tstack
+/plugin install tstack@tstack
 ```
 
-Claude Code lists the skills under the plugin name, for example `/portable-skills:bro` or `/portable-skills:technical-writing`.
+Claude Code lists the skills under the plugin name, for example `/tstack:bro` or `/tstack:technical-writing`.
 
 To have a project offer the plugin to everyone who opens it, add this to the project's `.claude/settings.json`:
 
 ```json
 {
   "extraKnownMarketplaces": {
-    "portable-skills": {
-      "source": { "source": "github", "repo": "TylerKimbell/portable-skills" }
+    "tstack": {
+      "source": { "source": "github", "repo": "TylerKimbell/tstack" }
     }
   },
-  "enabledPlugins": { "portable-skills@portable-skills": true }
+  "enabledPlugins": { "tstack@tstack": true }
 }
 ```
 
-To get new versions, run `/plugin marketplace update portable-skills`.
+To get new versions, run `/plugin marketplace update tstack`.
 
 ## Use in Codex
 

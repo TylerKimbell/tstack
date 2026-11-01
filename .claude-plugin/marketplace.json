@@ -1,5 +1,5 @@
 {
-  "name": "portable-skills",
+  "name": "tstack",
   "owner": {
     "name": "Tyler Kimbell"
   },
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "portable-skills",
+      "name": "tstack",
       "description": "Cut AI tells from writing, review technical docs, restate a reply plainly, and package API calls as Postman collections.",
       "source": "./"
     }
