@@ -1,0 +1,16 @@
+{
+  "name": "portable-skills",
+  "owner": {
+    "name": "Tyler Kimbell"
+  },
+  "metadata": {
+    "description": "General-purpose agent skills that work in any project."
+  },
+  "plugins": [
+    {
+      "name": "portable-skills",
+      "description": "Cut AI tells from writing, review technical docs, restate a reply plainly, and package API calls as Postman collections.",
+      "source": "./"
+    }
+  ]
+}
