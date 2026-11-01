@@ -1,9 +1,9 @@
 ---
 name: bro
-description: Restate the last message in plain human language, with no jargon.
+description: Restate your previous reply in plain language, with no jargon.
 disable-model-invocation: true
 ---
 
-Restate your last message. Stop using jargon and speak coherently. State it more simply and concisely, like one human talking to another.
+Restate your previous reply, not the user's message, the way one person explains something to another: simpler, shorter, no jargon. Put technical terms in everyday words, but keep the numbers, file paths, decisions, and next steps. Add nothing new and run no tools. If the user names a part, restate only that part.
 
-<!-- Adapted from backnotprop/pstack (https://github.com/backnotprop/pstack). MIT License, Copyright (c) 2026 Lauren Tan; see the upstream repository for the full license text. Local changes are ours. -->
+<!-- Adapted from https://github.com/backnotprop/pstack. MIT License, Copyright (c) 2026 Lauren Tan. -->
