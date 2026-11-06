@@ -1,6 +1,6 @@
 # tstack
 
-Agent skills that work in any project. None of them reads project files to do its job, so you can install them once and use them everywhere. They run in Claude Code as a plugin and in OpenAI Codex as plain skill folders.
+Agent skills that work in any project. None of them reads project files to do its job, so you can install them once and use them everywhere. They run as a plugin in claude.ai, Cowork, and Claude Code, and in OpenAI Codex as plain skill folders.
 
 | Skill | What it does | How it runs |
 |---|---|---|
@@ -9,7 +9,25 @@ Agent skills that work in any project. None of them reads project files to do it
 | `bro` | Restates the agent's previous reply in plain words and keeps the numbers, paths, and next steps. Add text to restate only one part. | Only when you invoke it |
 | `postman` | Builds importable Postman Collection v2.1 files: one request, additions to an existing collection, or a full workflow. It checks each request against the API source and keeps credentials out of shareable files. | Automatically when you ask for a Postman artifact, or on request |
 
-## Install in Claude Code
+## Install on claude.ai
+
+Add the plugin to your Claude account once, and you get it in chat, Cowork, and Claude Code:
+
+1. Open [Customize > Plugins](https://claude.ai/customize/plugins) in claude.ai or the Claude desktop app.
+2. Select **Add > Add marketplace**, then enter `TylerKimbell/tstack`.
+3. On **Discover**, select `tstack`, then select **Add**.
+
+In chat, describe the task and Claude loads the matching skill. To pick a skill yourself, type `/tstack` in the message box and select it from the menu.
+
+Claude Code downloads the plugin the next time you start a session signed in to the same account. In a session that is already open, run `/reload-plugins` to load it.
+
+To get new versions, open the marketplace on the **Plugins** page and select **Check for updates**, or turn on **Sync automatically**.
+
+On Team and Enterprise plans, an Owner controls whether members can add their own marketplaces. If you don't see **Add marketplace**, ask an Owner, or install from the Claude Code command line instead.
+
+## Install from the Claude Code command line
+
+Use this method if you don't use claude.ai, or you want the plugin on one machine only. Plugins you install this way aren't added to your claude.ai account.
 
 Add the marketplace, then install the plugin:
 
