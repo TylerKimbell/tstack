@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn"
+  short_description: "Learn a topic goal by goal from verified sources"
+  default_prompt: "Use $learn to teach me this topic goal by goal from verified sources."

@@ -7,6 +7,7 @@ Agent skills that work in any project without setup. Install them once and use t
 | `unslop` | Cuts AI-writing tells (puffery, filler, AI vocabulary, em dashes, chatbot phrases) from prose and adds a human voice. Runs whenever the agent writes prose for a person. | Automatic, or on request |
 | `technical-writing` | Writes or reviews docs, READMEs, RFCs, PR descriptions, and commit messages in four layers: Diátaxis, Google developer style, Simplified Technical English, and Global English. Finishes with `unslop`. | On request only |
 | `bro` | Restates the agent's previous reply in plain words and keeps the numbers, paths, and next steps. Add text to restate only one part. | On request only |
+| `learn` | Teaches a topic goal by goal from verified sources and checks your understanding with a scenario after each goal. Say `learn X from Y`, where Y is a source to read or an owner (a company, product, or framework) whose docs define X. | Automatic, or on request |
 | `postman` | Builds importable Postman Collection v2.1 files: one request, additions to an existing collection, or a full workflow. It checks each request against the API source and keeps credentials out of shareable files. Runs when you ask for a Postman request or collection. | Automatic, or on request |
 
 ## Install on claude.ai
@@ -17,7 +18,7 @@ Add the plugin to your Claude account once, and you get it in chat, Cowork, and 
 2. Select **Add > Add marketplace**, then enter `TylerKimbell/tstack`.
 3. On **Discover**, select `tstack`, then select **Add**.
 
-Claude loads `unslop` and `postman` when the task calls for them. To run `bro` or `technical-writing`, type `/tstack` in the message box and select the skill.
+Claude loads `unslop`, `learn`, and `postman` when the task calls for them. To run `bro` or `technical-writing`, type `/tstack` in the message box and select the skill.
 
 Claude Code downloads the plugin the next time you start a session signed in to the same account. In a session that is already open, run `/reload-plugins` to load it.
 
@@ -73,7 +74,7 @@ Codex reads each skill's `agents/openai.yaml`. It runs `bro` and `technical-writ
 
 ## Override the defaults with your project's instructions
 
-The skills follow your project's instructions (`AGENTS.md`, `CLAUDE.md`, or a house style guide) when they conflict with the skills' defaults. `postman` also reads any README beside existing collections for save locations, variable names, extra API checks, and a secret scanner to run. Without one, it saves shareable files in `postman/`, keeps files with real values in `postman/local/`, and runs its own credential scan.
+The skills follow your project's instructions (`AGENTS.md`, `CLAUDE.md`, or a house style guide) when they conflict with the skills' defaults. `postman` also reads any README beside existing collections for save locations, variable names, extra API checks, and a secret scanner to run. Without one, it saves shareable files in `postman/`, keeps files with real values in `postman/local/`, and runs its own credential scan. `learn` defers to a project's own `learn` skill if it has one.
 
 ## Change a skill
 
