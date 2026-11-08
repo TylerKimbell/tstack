@@ -44,8 +44,9 @@ renaming it, changing the flow model, or changing the report format.
 
 Run `python3 evals/iterate/check.py` from the repository root before every round. It checks
 that the skill's frontmatter has the right name and a description under 1024 characters,
-that the plugin manifests are valid JSON, that the README has a row for the skill, and that
-every file this spec names exists, and that the run log lives only in `iterate-log.md`.
+that `templates.md` exists and the skill mentions it, that the plugin manifests are valid
+JSON, that the README has a row for the skill, that every fixture this spec names exists,
+and that the run log lives only in `iterate-log.md`.
 
 ---
 
@@ -128,8 +129,8 @@ The runner adds two lines at the top: the repository root and the scratch folder
 > on any kind of thing and any flow, and two agents following it should produce comparable
 > specs, briefs, and scores.
 >
-> **Settled decisions, don't raise or score these:** one flow per run; specs live with the
-> thing being improved, never in the skill's folder.
+> **Settled decisions:** the spec's Settled decisions for this flow; don't raise or score
+> them.
 >
 > **Read**, with paths relative to the repository root:
 > - `skills/iterate/SKILL.md`, the version on disk now, and any file it tells you to load.

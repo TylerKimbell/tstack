@@ -1,6 +1,6 @@
 {
   "name": "tstack",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "General-purpose agent skills that work in any project: cut AI tells from writing, review technical docs, restate a reply plainly, teach a topic from verified sources, improve anything in repeatable scored rounds, and package API calls as Postman collections.",
   "author": {
     "name": "Tyler Kimbell"

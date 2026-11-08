@@ -7,9 +7,9 @@ description: >-
   flow's fixed rubric, and report findings; you fix what's in scope and rerun toward a
   target score. Works on pages, artifacts, apps, skills, prompts, documents, and
   workflows, including this skill itself. Use for "iterate on this", "run N rounds", "get
-  it to 7/10", "test this as a new user", "review the styling", "make this better", or
-  "keep improving it until it's good". Not for a single defect with a clear done state,
-  such as a broken button or a failing test.
+  it to 7/10", "test this as a new user", or "keep improving it until it's good". Not for
+  a quick opinion, a one-off edit, or a single defect with a clear done state, such as a
+  broken button or a failing test.
 ---
 
 # Iterate
@@ -131,8 +131,8 @@ flow needs more. Log a new check in the next round's entry of the flow that need
 ## Step 4: Run a round
 
 Before the run's first round, on every route except report only, save the **starting
-version** of the thing for Step 7's comparison: a commit, a copy in the run's scratch
-folder, or screenshots where a copy isn't possible. Before every round, run the checks and
+version** of the thing for Step 7's comparison: a commit that already exists, a copy in the
+run's scratch folder, or screenshots where a copy isn't possible. Before every round, run the checks and
 reset the fixtures as the spec says. Then brief new subagents that haven't seen earlier
 rounds, so they judge the thing and not your memory of it.
 
@@ -233,8 +233,9 @@ of these holds:
    score for the whole run, not the one since the latest baseline. It can't hold until
    2N rounds have been scored in this run, and breaks don't restart it, so evaluators who
    always find one more high-impact fix can't keep a run going on a plateau.
-5. **Nothing to change:** the round produced no [direct] finding, only proposals or
-   nothing, so the next round would score the same thing.
+5. **Nothing to change:** the round produced no [direct] finding that Step 5 would apply,
+   only proposals, findings it leaves unapplied, or nothing, so the next round would score
+   the same thing.
 6. **Ceiling in the test:** two rounds in a row, the primary places the next point in the
    test rather than the thing (invented stand-ins, a tool that can't reach part of it),
    and neither round applied a high-impact fix.
