@@ -4,12 +4,12 @@
 
 **Run state:** ended after round 12 (rule 2, budget spent: 2 of 2); the primary's best
 score since the round 11 baseline and for the run: 8; last round with progress: 12;
-starting version commit 1d6a305; fixes uncommitted in the working tree on
-add-iterate-skill, round 12's not yet scored.
+starting version commit 1d6a305; fixes merged to main in 9de7556, round 12's not yet
+scored.
 
-The baseline and the last three rounds are in full; older rounds are one line each. Round 5
-is the current baseline: scenarios 6 and 7, their fixtures, and the brief changed just
-before it.
+Rounds 5 and 8 to 12 are in full; the others are one line each. Round 11 is the latest
+scored baseline: the brief's Read line and the evaluator panel changed just before it. The
+last entry below logs a break, so the next scored round is a new baseline.
 
 - 2026-11-08, round 1 (first baseline), 7/10: added the rerun path, score anchors, and the
   decline rule.
@@ -259,3 +259,15 @@ before it.
   to fill a missing Run state. The starting version's own flaws it named: Step 7's opening
   contradicted rule 3, the brief's "Report only" collided with the budget, and rule 4
   didn't say which best score it uses. Comparison cost: one evaluator run.
+- **2026-11-08, after round 12: fixes from the code review of the merged PR.** Not yet
+  scored.
+  - Step 4's starting version is a commit that already exists, a copy, or screenshots,
+    because iterating never authorizes committing.
+  - Rule 5 now counts only [direct] findings Step 5 would apply. A round whose [direct]
+    findings all go unapplied changes nothing, so the next round would score the same thing.
+  - The description no longer triggers on "make this better" or "review the styling". The
+    routes for those requests still apply once the skill is loaded.
+  - `check.py` reads files as UTF-8 and reports an unreadable file as a failure. The spec's
+    Checks section now says the script covers fixtures, not every file the spec names.
+  - **Break in comparability:** the brief's Settled decisions line now points to the
+    spec's section, as the brief template does. The next scored round is a new baseline.
