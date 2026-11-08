@@ -1,30 +1,62 @@
 # Iterate templates
 
-Load this file when routing the request. It holds the Step 1 message, the spec skeleton,
-the flow cards that fill it, and the brief template for Step 4.
+Load this file when routing the request. It holds the Step 1 message, the spec and log
+skeletons, the flow cards that fill the spec, and the brief template for Step 4.
 
 ## Step 1 message
 
-One message, with every field for the route filled in or drafted. Leave out fields the
+One message, with every field the route uses filled in or drafted. Leave out fields the
 route doesn't use.
 
 | Field | No spec | New flow on a spec | Rerun | Review | Make it better |
 |---|---|---|---|---|---|
-| The thing and how an evaluator reaches it | yes | if new | if missing | yes | yes |
+| The thing | yes | if new | if missing | yes | yes |
 | Where the spec will live | if unclear | | | if unclear | if unclear |
 | The flow and its card | yes | yes | | yes | best fit, plus others |
 | Target and budget | yes | yes | yes | report only | yes, or a single pass |
-| Publishing, if fixes would or might reach live users | yes | yes | yes | | yes |
+| Evaluators | yes | yes | if missing | yes | yes |
+| Publishing | yes | yes | yes | | yes |
 | Draft guardrails | yes | In scope changes | | yes | yes |
 | Draft scenarios | yes | yes | new ones only | yes | yes |
-| Fixtures and checks the evaluator needs: real or invented, facts only the owner knows, records others can see, any test tool the thing has | yes | yes | if missing | yes | yes |
+| Fixtures and checks | yes | yes | if missing | yes | yes |
 | Open proposals and "not covered" items | | | yes | | |
-| Backfill (Step 2, Rerun item 3) | | | yes | | |
+| Backfill | | | yes | | |
+
+What each field needs:
+
+- **The thing:** where it lives, how an evaluator reaches it (tools, account, limits), and
+  any test tool it already has. For a prompt, the model it runs on in production.
+- **Where the spec will live:** only when Step 2's rule doesn't settle it.
+- **The flow and its card:** if the user names no flow, suggest the one that fits best and
+  name one or two others.
+- **Target and budget:** default 7/10 within 3 rounds for a new flow; on a rerun, one point
+  above the last logged score, even across a break, within 2 rounds. Take the user's
+  numbers, however large, and fill a missing one from the default. Never run more than
+  one round without a limit. If the target is above 8 or more than 2 points above the last
+  score, say the run may stop early on a plateau, and go ahead.
+- **Evaluators:** default one, the session's model at the session's effort; up to three
+  from Step 4's table, or the user's own panel. Name the primary. Warn about cost if Fable
+  is on the panel.
+- **Publishing:** only when fixes would or might reach people using the thing: live each
+  round, live when the run ends, or a draft for the owner. For a draft, say where it lives
+  and how an evaluator reaches it.
+- **Draft guardrails:** from the skeleton. If they would leave the likely fixes as
+  proposals, say so, so the owner can widen Fix directly; otherwise a run can end after one
+  round with nothing to change.
+- **Draft scenarios:** from the card. If you can reach the thing, look at it first;
+  otherwise mark them "to confirm on first look" and confirm them yourself before round 1.
+- **Fixtures and checks:** what the evaluator needs (test records, sample inputs, the
+  facts a prompt assumes), and whether they're real or invented stand-ins, which can cap
+  the score (Step 7, rule 6). Ask for facts only the owner knows, and before creating a
+  record others can see.
+- **Open proposals and "not covered" items:** from the run log, each with its status; one
+  with no status counts as open.
+- **Backfill:** what Step 2's Rerun item 2 would add, and anything that would be a break.
 
 ## Spec skeleton
 
-Copy it and fill in every line by the end of Step 4. In a new spec, Settled decisions and
-Run log read "None yet".
+Copy it and fill in every line by the end of Step 4. In a new spec, Settled decisions read
+"None yet". Evaluators read this file, so it never holds scores or the run log.
 
 ```markdown
 # Iterate spec: <the thing>
@@ -50,7 +82,9 @@ Run log read "None yet".
 **Card:** <user walkthrough, lens review, skill dry run, prompt dry run, or custom>
 **Who and what:** <the user and their job, or the reviewer and their lens>
 **Target and budget:** <such as 7/10 within 3 rounds, or report only>
-**Publishing:** <live each round, live when the run ends, or a draft for the owner>
+**Evaluators:** <the panel, with the primary marked>
+**Publishing:** <live each round, live when the run ends, a draft for the owner, or none
+and why (report only, or no fix can reach anyone)>
 
 ### Scenarios
 1. <scenario>
@@ -68,9 +102,22 @@ Sub-scores:
 - <decision>: <one-line reason>
 
 ### Brief
-<The exact text every round's evaluator gets.>
+<The exact text every round's evaluators get.>
+```
 
-### Run log
+## Log skeleton
+
+A separate file beside the spec. In a new log, Run state reads "not started" and the
+entries read "None yet".
+
+```markdown
+# Iterate log: <the thing>
+
+## Flow: <name>
+**Run state:** <rounds used of this run's budget; the primary's best score since the
+latest baseline; last round that made progress; where the starting version and the fixes
+are>
+
 <Rounds, newest last.>
 ```
 
@@ -87,17 +134,19 @@ A person doing a job with a page, app, document, or workflow.
 
 - **Opener:** You are <user> doing <job> for the first time.
 - **Scenarios:** the points the user reaches. For a timeline, the boundaries of the window
-  the flow covers (before it starts, its first day, its last day, the day after) plus a
-  few days between, counted in the units the thing uses. For steps, each step plus the
-  empty, half-done, and finished states. When the thing has both, use the timeline and put
-  the step states on its days: empty at the start, half done in the middle, overdue the
-  day after. Views or tabs aren't separate scenarios: check each view at every scenario,
-  in the questions. If the window's unit is ambiguous (working or calendar days), mark it
-  to confirm.
+  the flow covers (before it starts, its first day, its last day, the day after) plus its
+  midpoint and, for a window longer than two weeks, its quarter points, counted in the
+  units the thing uses (the day before it starts is day 0; a half rounds up). For steps,
+  each step plus the empty, half-done, and finished states. When the thing has both, use
+  the timeline and put the step states on its days: empty on day 0 and the first day, half
+  done at the midpoint, a few left on the last day, and those overdue the day after. Views
+  or tabs aren't separate scenarios: check each view at every scenario, in the questions.
+  If the window's unit is ambiguous (working or calendar days), mark it to confirm.
 - **Questions:** What do I do now? What's due next, and by when? Where do I mark it done?
-  For anything clicked through, add: the next step is obvious without reading everything;
-  labels say what they do in the user's words; missing information has a clear
-  consequence; errors say how to fix them; nothing destructive happens on one click.
+  When the user clicks, types, ticks, or switches anything, add: the next step is obvious
+  without reading everything; labels say what they do in the user's words; missing
+  information has a clear consequence; errors say how to fix them; nothing destructive
+  happens on one click.
 - **Anchors:** 10, every scenario done without help or guessing; 7, all done with some
   hesitation; 4, stuck in at least one; 1, unusable.
 - **Sub-scores:**
@@ -114,8 +163,8 @@ A reviewer judging the thing against one lens, such as visual styling or accessi
 - **Opener:** You are reviewing <thing> for <lens>.
 - **Scenarios:** the pieces to examine one at a time: each distinct kind of component
   once, with its states counted as one piece, plus the whole thing at phone width. Up to
-  twelve. For something that changes over time, look at one representative state and say
-  which.
+  twelve. For something that changes over time, look at the state that shows the most
+  kinds of item state, and say which.
 - **Questions:** For styling: does this piece match the others of its kind, does the eye
   land on what matters, and is colour used for meaning? Check each theme the thing has.
 - **Anchors:** 10, every piece passes the lens; 7, small inconsistencies a user would
@@ -148,14 +197,16 @@ An agent following a skill or set of instructions on sample requests.
 
 ### Prompt dry run
 
-A model following a prompt on sample inputs. The evaluator produces the outputs and judges
-them in the same pass; say so in the log, because a model grading its own outputs can
-miss what it got wrong. Run it on the production model from Step 1 when you can, and
-record which model ran it, since scores may not carry over. Clarifying an existing instruction is a direct fix;
-adding an instruction is a proposal.
+A model following a prompt on sample inputs. Run the prompt on the production model from
+Step 1 when the tools allow (a runner setting, not part of the brief), and record which
+model ran it, since scores may not carry over. With a panel, a different model on it judges
+the outputs, so no model grades its own work; with one evaluator, it produces and judges
+in the same pass, and the log says so. Clarifying an existing instruction is a direct fix;
+adding an instruction is a proposal, unless the owner widened Fix directly in Step 1.
 
 - **Opener:** You are the model this prompt instructs. Run it on each sample input, then
-  judge the outputs.
+  judge the outputs. (With a judge from the panel: You are judging outputs this prompt
+  produced on each sample input.)
 - **Scenarios:** four to eight inputs from the fixtures: typical ones, an edge case, and
   one the prompt should refuse or redirect.
 - **Questions:** Does each output follow every instruction? Would its reader act on it as
@@ -184,8 +235,8 @@ the spec names, and list what you changed. Never touch <real records and control
 **Settled decisions, don't raise or score these:** <from the spec>
 
 **Read:** <spec location>, the shared part and the "Flow: <name>" section, and any file
-they point to. Ignore the run log; form your own view. Judge only what this flow's Who and
-what covers, even where the shared In scope is wider.
+they point to. Don't open the run log beside it; form your own view. Judge only what this
+flow's Who and what covers, even where the shared In scope is wider.
 
 **Scenarios:** <each one, and what to do there>
 

@@ -44,6 +44,13 @@ for name in ("plugin.json", "marketplace.json"):
 if "| `iterate` |" not in (ROOT / "README.md").read_text():
     failures.append("README.md has no row for iterate")
 
+# The run log and Run state live only in iterate-log.md, so evaluators can't read scores.
+spec_text = (HERE / "iterate.md").read_text()
+if not (HERE / "iterate-log.md").is_file():
+    failures.append("evals/iterate/iterate-log.md is missing")
+if "### Run log" in spec_text or "**Run state:**" in spec_text:
+    failures.append("iterate.md holds a run log or Run state; move it to iterate-log.md")
+
 # Every fixture the spec names must exist.
 spec = (HERE / "iterate.md").read_text()
 for path in sorted(set(re.findall(r"`(fixtures/[^`]+)`", spec))):
