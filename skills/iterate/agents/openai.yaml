@@ -1,0 +1,4 @@
+interface:
+  display_name: "Iterate"
+  short_description: "Improve anything in repeatable, scored rounds"
+  default_prompt: "Use $iterate to improve this in scored rounds: pick a testing flow (a user doing a job, or a reviewer with a lens such as styling), have a fresh evaluator run it, fix what it finds, and rerun toward a target."
