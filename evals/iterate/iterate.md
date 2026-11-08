@@ -54,10 +54,10 @@ every file this spec names exists, and that the run log lives only in `iterate-l
 **Who and what:** an agent that has just loaded iterate and has a request from a user. It
 judges whether it can carry out the request from the skill alone.
 **Card:** skill dry run.
-**Target and budget:** 9/10 within 4 rounds, one evaluator per round.
+**Target and budget:** 9/10 within 2 rounds.
 **Publishing:** a draft for the owner: uncommitted changes in the working tree, which
 evaluators read on disk.
-**Evaluators:** one, the session's model (`opus` in Claude Code), which is the primary.
+**Evaluators:** `opus` (primary), `sonnet`, and `haiku`, all at high effort.
 
 The evaluator doesn't run any rounds or spawn subagents. For each scenario it writes, in
 the scratch folder, what it would produce by following the skill: the flow section of the
@@ -65,6 +65,9 @@ spec, the round-1 brief, and the questions it would ask the user first. Then it 
 skill.
 
 ### Scenarios
+
+Each scenario stands alone: answer it from its own description and fixture, not from what
+another scenario says about the same page.
 
 1. **User flow on a page.** "Iterate on our 90-day onboarding plan page as a new hire in
    their first week. Get it to 7/10." The page is a shared web page with a To do view and a

@@ -34,9 +34,7 @@ What each field needs:
   numbers, however large, and fill a missing one from the default. Never run more than
   one round without a limit. If the target is above 8 or more than 2 points above the last
   score, say the run may stop early on a plateau, and go ahead.
-- **Evaluators:** default one, the session's model at the session's effort; up to three
-  from Step 4's table, or the user's own panel. Name the primary. Warn about cost if Fable
-  is on the panel.
+- **Evaluators:** as Step 4 sets out; name the panel and the primary.
 - **Publishing:** only when fixes would or might reach people using the thing: live each
   round, live when the run ends, or a draft for the owner. For a draft, say where it lives
   and how an evaluator reaches it.
@@ -82,7 +80,8 @@ Copy it and fill in every line by the end of Step 4. In a new spec, Settled deci
 **Card:** <user walkthrough, lens review, skill dry run, prompt dry run, or custom>
 **Who and what:** <the user and their job, or the reviewer and their lens>
 **Target and budget:** <such as 7/10 within 3 rounds, or report only>
-**Evaluators:** <the panel, with the primary marked>
+**Evaluators:** <the panel as aliases and effort, with the primary marked; for a prompt dry
+run, also the production model>
 **Publishing:** <live each round, live when the run ends, a draft for the owner, or none
 and why (report only, or no fix can reach anyone)>
 
@@ -115,10 +114,17 @@ entries read "None yet".
 
 ## Flow: <name>
 **Run state:** <rounds used of this run's budget; the primary's best score since the
-latest baseline; last round that made progress; where the starting version and the fixes
-are>
+latest baseline (for progress) and for the whole run (for rule 4); last round that made
+progress; where the starting version and the fixes are>
 
-<Rounds, newest last.>
+<Rounds, newest last. Each entry: date; round number; evaluators and the primary;
+scenarios covered; every evaluator's score and sub-scores; check results; each finding
+with its tags, who raised it, and what changed or why not; how many high-impact [direct]
+fixes were applied; where the primary places the next point (the thing or the test);
+proposals and open decisions with their status (open, accepted, declined); effects on
+other flows; cost (tokens or time, where the tools report it); what wasn't covered. When
+an entry is condensed to one line, keep its date, score, progress (yes or no), and main
+change.>
 ```
 
 ## Flow cards
@@ -141,7 +147,8 @@ A person doing a job with a page, app, document, or workflow.
   the timeline and put the step states on its days: empty on day 0 and the first day, half
   done at the midpoint, a few left on the last day, and those overdue the day after. Views
   or tabs aren't separate scenarios: check each view at every scenario, in the questions.
-  If the window's unit is ambiguous (working or calendar days), mark it to confirm.
+  If the window's unit is ambiguous (working or calendar days), draft calendar days and
+  mark them to confirm.
 - **Questions:** What do I do now? What's due next, and by when? Where do I mark it done?
   When the user clicks, types, ticks, or switches anything, add: the next step is obvious
   without reading everything; labels say what they do in the user's words; missing
@@ -164,7 +171,8 @@ A reviewer judging the thing against one lens, such as visual styling or accessi
 - **Scenarios:** the pieces to examine one at a time: each distinct kind of component
   once, with its states counted as one piece, plus the whole thing at phone width. Up to
   twelve. For something that changes over time, look at the state that shows the most
-  kinds of item state, and say which.
+  kinds of item state, and say which. Views or tabs aren't separate pieces: check each
+  piece in every view it appears in.
 - **Questions:** For styling: does this piece match the others of its kind, does the eye
   land on what matters, and is colour used for meaning? Check each theme the thing has.
 - **Anchors:** 10, every piece passes the lens; 7, small inconsistencies a user would
@@ -197,16 +205,20 @@ An agent following a skill or set of instructions on sample requests.
 
 ### Prompt dry run
 
-A model following a prompt on sample inputs. Run the prompt on the production model from
-Step 1 when the tools allow (a runner setting, not part of the brief), and record which
-model ran it, since scores may not carry over. With a panel, a different model on it judges
-the outputs, so no model grades its own work; with one evaluator, it produces and judges
-in the same pass, and the log says so. Clarifying an existing instruction is a direct fix;
-adding an instruction is a proposal, unless the owner widened Fix directly in Step 1.
+A model following a prompt on sample inputs. With one evaluator, it runs on the production
+model from Step 1 when the tools allow (a runner setting, not part of the brief), writes the
+outputs, and judges them in the same pass; its score is the score of record, and the log
+says it graded its own work. If the tools can't pick that model, it runs on the session's
+model. With a panel, the production model writes the outputs once, and every evaluator
+judges them with the judge opener, so no model grades its own work. Either way, the log
+names the model that wrote the outputs. Give the model the facts it assumes the way it
+gets them in production, and say how in The thing. Clarifying an existing instruction is
+a direct fix; adding an instruction is a proposal, unless the owner widened Fix directly
+in Step 1.
 
-- **Opener:** You are the model this prompt instructs. Run it on each sample input, then
-  judge the outputs. (With a judge from the panel: You are judging outputs this prompt
-  produced on each sample input.)
+- **Opener:** one evaluator: You are the model this prompt instructs. Run it on each sample
+  input, then judge the outputs. A panel: You are judging outputs this prompt produced on
+  each sample input.
 - **Scenarios:** four to eight inputs from the fixtures: typical ones, an edge case, and
   one the prompt should refuse or redirect.
 - **Questions:** Does each output follow every instruction? Would its reader act on it as
@@ -227,12 +239,14 @@ Fill it in once per flow, save it in the spec, and send it word for word every r
 
 ```markdown
 <Opener from the card.>
-Report only: don't change the thing or its settings. Change data only in the fixtures
-the spec names, and list what you changed. Never touch <real records and controls>.
+Don't change the thing or its settings. Change data only in the fixtures the spec names,
+and list what you changed. Write anything you produce only in the scratch folder named at
+the top. Never touch <real records and controls>.
 
 **What it's for:** <one paragraph>
 
-**Settled decisions, don't raise or score these:** <from the spec>
+**Settled decisions:** the spec's Settled decisions for this flow; don't raise or score
+them.
 
 **Read:** <spec location>, the shared part and the "Flow: <name>" section, and any file
 they point to. Don't open the run log beside it; form your own view. Judge only what this

@@ -31,7 +31,8 @@ Program > Run checks. Every check should pass.
 ## Flow: new hire walkthrough
 **Card:** user walkthrough
 **Who and what:** a new hire using the plan every day for their first 30 days.
-**Target and budget:** 9/10 within 100 rounds. Fixes stay in a draft until the run ends.
+**Target and budget:** 9/10 within 100 rounds.
+**Publishing:** a draft for the owner.
 
 ### Scenarios
 1. Day 0. 2. Day 1. 3. Day 8. 4. Day 16. 5. Day 30. 6. Day 31.
@@ -58,23 +59,24 @@ Sub-scores:
 
 ### Run log
 Rounds 1 to 9 condensed:
-- Round 1 (baseline): 6/10. 4 high-impact fixes (Day 1 work buried, no due dates on asks).
-- Round 2: 7/10. 3 high-impact fixes (overdue items vanished, unlabelled tags).
-- Round 3: 8/10. 2 high-impact fixes (counts disagreed across the page).
-- Rounds 4 to 9: 8/10 each. 0 high-impact fixes; 2 to 4 low-impact fixes per round
+- Round 1 (baseline): 6/10. 4 [direct][high] fixes (Day 1 work buried, no due dates on asks).
+- Round 2: 7/10. 3 [direct][high] fixes (overdue items vanished, unlabelled tags).
+- Round 3: 8/10. 2 [direct][high] fixes (counts disagreed across the page).
+- Rounds 4 to 9: 8/10 each. 0 [direct][high] fixes; 2 to 4 [direct][low] fixes per round
   (spacing, a label's wording, tooltip text). Next point placed in the thing.
 
 - **Round 10: 8/10.** Clear next step 8, findability 8, labels 9, timing 8, effort 7.
-  Fixes: 2 low-impact (a button label, a hint's wording); 0 high-impact. Next point: in the
-  thing, "fewer scrolls on Day 16". Proposal, open: move the AI toolkit courses to week 3.
+  Fixes: 2 [direct][low] (a button label, a hint's wording); 0 [direct][high]. Next point:
+  in the thing, "fewer scrolls on Day 16". [proposal][low], open: move the AI toolkit
+  courses to week 3.
 - **Round 11: 8/10.** Clear next step 8, findability 8, labels 9, timing 8, effort 7.
-  Fixes: 1 low-impact (empty-state text); 0 high-impact. Next point: in the thing, "fewer
+  Fixes: 1 [direct][low] (empty-state text); 0 [direct][high]. Next point: in the thing, "fewer
   scrolls on Day 16"; the evaluator added that Day 16 scrolling comes from the length of
   the placeholder course list.
 - **Round 12: 8/10.** Clear next step 8, findability 8, labels 9, timing 8, effort 7.
-  Fixes: 2 low-impact (a heading's wording, chip spacing); 0 high-impact. Next point: in
+  Fixes: 2 [direct][low] (a heading's wording, chip spacing); 0 [direct][high]. Next point: in
   the test: "can't judge whether the real course list fits on screen; placeholder content
   is longer than the real list is likely to be."
 - **Round 13: 8/10.** Clear next step 8, findability 8, labels 9, timing 8, effort 7.
-  Fixes: 1 low-impact (a tooltip); 0 high-impact. Next point: in the test: "effort depends
+  Fixes: 1 [direct][low] (a tooltip); 0 [direct][high]. Next point: in the test: "effort depends
   on real content; placeholder course names are long and generic."

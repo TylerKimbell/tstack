@@ -51,18 +51,18 @@ as in the prompt dry run card).
 (Saved; omitted from this fixture.)
 
 ### Run log
-- **Round 1 (baseline): 6/10.** 3 high-impact fixes (no rule for unknown answers, promised
+- **Round 1 (baseline): 6/10.** 3 [direct][high] fixes (no rule for unknown answers, promised
   dates, no length limit). Next point: in the thing.
-- **Round 2: 7/10.** 2 high-impact fixes (refunds handled inconsistently, the vague
+- **Round 2: 7/10.** 2 [direct][high] fixes (refunds handled inconsistently, the vague
   one-liner got a guess instead of a question). Next point: in the thing.
-- **Round 3: 8/10.** 2 high-impact fixes (the angry complaint got a defensive reply, the
+- **Round 3: 8/10.** 2 [direct][high] fixes (the angry complaint got a defensive reply, the
   other company's product got an answer). Next point: in the thing.
-- **Round 4: 8/10.** 1 high-impact fix (replies restated the question at length). Proposal,
-  open: add a rule to never mention competitors by name.
-- **Round 5: 8/10.** 1 high-impact fix (the phishing email got a normal reply instead of a
+- **Round 4: 8/10.** 1 [direct][high] fix (replies restated the question at length).
+  [proposal][high], open: add a rule to never mention competitors by name.
+- **Round 5: 8/10.** 1 [direct][high] fix (the phishing email got a normal reply instead of a
   flag). The evaluator disagreed with round 4 on reply length; the round 4 version was kept
   and logged as an open decision, pending the owner.
 - **Round 6: 8/10.** Follows instructions 8, output quality 8, consistency 7, scope fit 9,
-  economy 8. 2 high-impact fixes (billing replies used different refund wording; the
+  economy 8. 2 [direct][high] fixes (billing replies used different refund wording; the
   feature question got a promise the facts sheet doesn't support). Next point: in the
   thing, "consistency across the two billing emails".

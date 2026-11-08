@@ -2,9 +2,10 @@
 
 ## Flow: dry run
 
-**Run state:** ended after round 10 (rule 2, budget spent: 4 of 4); best score since the
-round 5 baseline 8; last round that made progress 10; fixes uncommitted in the working
-tree, round 10's not yet scored.
+**Run state:** ended after round 12 (rule 2, budget spent: 2 of 2); the primary's best
+score since the round 11 baseline and for the run: 8; last round with progress: 12;
+starting version commit 1d6a305; fixes uncommitted in the working tree on
+add-iterate-skill, round 12's not yet scored.
 
 The baseline and the last three rounds are in full; older rounds are one line each. Round 5
 is the current baseline: scenarios 6 and 7, their fixtures, and the brief changed just
@@ -173,3 +174,88 @@ before it.
     evaluator panel is now part of the flow. The next round is a new baseline.
   - [proposal, open] Test changes still held: say each scenario is independent; tag the
     fixture logs' fixes [direct] and by impact; fix the plateau fixture's publishing wording.
+- **2026-11-08, setup for the run starting at round 11 (owner's Step 1 answers).** Target
+  9/10 within 2 rounds. Evaluators: `opus` (primary), `sonnet`, `haiku`, all at high
+  effort. Publishing: a draft for the owner. Starting version: commit 1d6a305. Accepted
+  the three held test changes: scenarios stand alone, fixture log fixes tagged
+  [direct]/[proposal] and by impact, and the plateau fixture's publishing set to "a draft
+  for the owner". With the brief and panel changes, round 11 is a new baseline.
+- **2026-11-08, round 11 (new baseline). Panel: `opus` (primary), `sonnet`, `haiku`, high
+  effort. Score of record 8/10.** Opus 8 (clarity 8, completeness 7, reproducibility 7,
+  scope fit 9, economy 7); Sonnet 8 (8, 7, 7, 9, 7); Haiku 6 (6, 6, 5, 8, 4). The 8-to-6 gap
+  is a finding: the skill is harder for a weaker agent to follow, mostly through length
+  and three-way lookups. All three routed all seven scenarios correctly; scenario 6
+  stopped under rules 3 and 6, scenario 7 continued without contact. Checks pass. Cost:
+  about 125k, 123k, and 159k tokens. Next point (primary): in the skill, plus older-format
+  fixtures. High-impact [direct] fixes applied: 7. Progress: yes.
+  - Applied, primary: a prompt dry run's model was contradictory (production model vs the
+    session's), now one rule for one evaluator and for a panel [high]; the starting
+    version moved to Step 4, so reruns save it too [high]; rules for an older-format spec
+    in a run under way; a route row for resuming a run; rule 4 can't hold before 2N
+    rounds; "report only" listed as a narrow form; views in the lens card; the Fable and
+    evaluator defaults only in Step 4.
+  - Applied, two or more evaluators: settled decisions live only in the spec, and the
+    brief points to them (Sonnet, Haiku) [high]; a review on a spec without the flow is
+    report only (Sonnet, Opus) [high]; a single pass is done by the runner with no spec,
+    brief, log, or score, using the card's default guardrails (Sonnet, Haiku) [high];
+    [direct] tags checked against Fix directly before applying (Sonnet; Haiku raised the
+    same classification gap) [high].
+  - Applied, smaller model only, clarity not contradicted by the primary: Step 7's first
+    sentence contradicted rule 3 (Haiku) [high]; Step 1's "wait anyway" wording (Haiku);
+    resolved aliases in the Evaluators line, templates not loaded for a single defect, the
+    "judgement, not an average" line in the backfill list (Sonnet); a no-report evaluator
+    is briefed once more; the log entry fields moved into the log skeleton (economy).
+  - Not applied: Haiku's rule that any number, date, promise, or rule is a proposal
+    (policy, not clarity; the retag check covers the gap); Haiku's widening of rule 7 to
+    any proposal (would stop autonomous runs whenever a proposal is next, against the
+    owner's design).
+  - [proposal, open] Haiku: make a review a single pass unless the user asks for a logged
+    round.
+  - [proposal, open] Opus, Sonnet: the plateau and progress fixtures use the older spec
+    format (no Evaluators, no Run state, log inline); either update them or say in the
+    scenarios that the old format is deliberate. A test change, so it waits.
+  - [proposal, open] Alternatives raised: a stop-rule worksheet as the Run state (Opus);
+    one checklist replacing the route table and Step 1 matrix (Haiku, Sonnet).
+  - Not covered: a live run on a real thing.
+- **2026-11-08, round 12. Panel: `opus` (primary), `sonnet`, `haiku`, high effort. Score
+  of record 8/10.** Opus 8 (8, 7, 7, 9, 7); Sonnet 8 (8, 7, 7, 9, 7); Haiku 6 (6, 6, 5, 8,
+  5; economy up from 4). All seven scenarios routed correctly for all three; scenario 6
+  stopped under rules 3 and 6, scenario 7 continued. Checks pass. Cost: about 122k, 122k,
+  and 155k tokens. Next point (primary): in the skill, bringing older specs up to date.
+  High-impact [direct] fixes applied: 6. Progress: yes. Fixes applied after the round,
+  not yet scored (SKILL.md 271 lines, templates.md 272):
+  - Primary: one "Bring a spec up to date" block in Step 2 for reruns and runs under way,
+    replacing the split instructions in Step 7 and the rerun list, and covering
+    evaluators, a prompt's production model, Publishing, and open decisions [high];
+    sub-scores the card doesn't define get a one-line definition from the closest card
+    question [high] (also Sonnet, Haiku); Evaluators line records effort; open proposals
+    alone don't end a run (rule 7); Step 1 names the starting version when an earlier run
+    left a draft; prompt facts given as in production.
+  - Two or more evaluators: the production model recorded in the Evaluators line (Sonnet,
+    Haiku) [high].
+  - Smaller model only, clarity not contradicted by the primary: report-only runs end with
+    Run state "ended: report only" and a short summary (Sonnet) [high]; evaluators write
+    only in the scratch folder, and the brief's "Report only" became "Don't change the
+    thing" (Sonnet, Haiku); condensed log lines keep progress (Haiku) [high]; Run state
+    keeps the best score for the run as well as since the baseline, for rule 4 (Haiku)
+    [high]; a single pass's default guardrails spelled out (Haiku); the comparison says
+    what the comparator sees (Haiku); a baseline sets the best score without counting as
+    a rise (Haiku); "draft calendar days" for an ambiguous window (Sonnet); the single
+    defect row says "reproduce, fix, and verify".
+  - [proposal, open] Haiku: whether rounds scored while evaluators could see the log count
+    as compromised. Sonnet: a rule for which Step 1 fields are questions and which are
+    drafts. Sonnet, Opus: per-route checklists or one Resume section in place of the
+    route table, Step 1 matrix, and rerun list.
+  - **Run ended: rule 2, budget spent (2 of 2).** Target 9 not reached. No other rule
+    holds: both rounds made progress; rule 4 can't hold before 4 rounds; the primary
+    placed the next point in the skill both times.
+- **2026-11-08, before-and-after comparison for the run of rounds 11 and 12.** One fresh
+  `opus` evaluator, high effort, blind (the final version was labelled X at random).
+  Verdict: the final version, clear confidence. It won scenarios 1, 2, 3, 4, and 7 and tied
+  5 and 6; a less capable agent would follow it more reliably, because it gives defaults
+  where the start left choices open and has no internal contradictions. Costs it named:
+  the dense "Bring a spec up to date" list, two best scores in the Run state, a break for
+  a missing "a judgement, not an average" line (strict), and Step 7 relying on the route
+  to fill a missing Run state. The starting version's own flaws it named: Step 7's opening
+  contradicted rule 3, the brief's "Report only" collided with the budget, and rule 4
+  didn't say which best score it uses. Comparison cost: one evaluator run.
