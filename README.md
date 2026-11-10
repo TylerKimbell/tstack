@@ -1,4 +1,4 @@
-# tstack
+# tystack
 
 Agent skills that work in any project without setup. Install them once and use them everywhere. They run as a plugin in claude.ai, Cowork, and Claude Code, and in OpenAI Codex as plain skill folders.
 
@@ -16,10 +16,10 @@ Agent skills that work in any project without setup. Install them once and use t
 Add the plugin to your Claude account once, and you get it in chat, Cowork, and Claude Code:
 
 1. Open [Customize > Plugins](https://claude.ai/customize/plugins) in claude.ai or the Claude desktop app.
-2. Select **Add > Add marketplace**, then enter `TylerKimbell/tstack`.
-3. On **Discover**, select `tstack`, then select **Add**.
+2. Select **Add > Add marketplace**, then enter `TylerKimbell/tystack`.
+3. On **Discover**, select `tystack`, then select **Add**.
 
-Claude loads `unslop`, `learn`, `iterate`, and `postman` when the task calls for them. To run `bro` or `technical-writing`, type `/tstack` in the message box and select the skill.
+Claude loads `unslop`, `learn`, `iterate`, and `postman` when the task calls for them. To run `bro` or `technical-writing`, type `/tystack` in the message box and select the skill.
 
 Claude Code downloads the plugin the next time you start a session signed in to the same account. In a session that is already open, run `/reload-plugins` to load it.
 
@@ -34,39 +34,39 @@ Use this method if you don't use claude.ai, or you want the plugin on one machin
 Add the marketplace, then install the plugin:
 
 ```text
-/plugin marketplace add TylerKimbell/tstack
-/plugin install tstack@tstack
+/plugin marketplace add TylerKimbell/tystack
+/plugin install tystack@tystack
 ```
 
-Claude Code lists the skills under the plugin name, for example `/tstack:bro` or `/tstack:technical-writing`.
+Claude Code lists the skills under the plugin name, for example `/tystack:bro` or `/tystack:technical-writing`.
 
 To have a project offer the plugin to everyone who opens it, add this to the project's `.claude/settings.json`:
 
 ```json
 {
   "extraKnownMarketplaces": {
-    "tstack": {
-      "source": { "source": "github", "repo": "TylerKimbell/tstack" }
+    "tystack": {
+      "source": { "source": "github", "repo": "TylerKimbell/tystack" }
     }
   },
-  "enabledPlugins": { "tstack@tstack": true }
+  "enabledPlugins": { "tystack@tystack": true }
 }
 ```
 
-To get new versions, run `/plugin marketplace update tstack`.
+To get new versions, run `/plugin marketplace update tystack`.
 
 ## Install in Codex
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/TylerKimbell/tstack
+   git clone https://github.com/TylerKimbell/tystack
    ```
 
 2. Copy the skill folders into your user skills folder, `~/.agents/skills/`:
 
    ```bash
-   mkdir -p ~/.agents/skills && cp -r tstack/skills/* ~/.agents/skills/
+   mkdir -p ~/.agents/skills && cp -r tystack/skills/* ~/.agents/skills/
    ```
 
    To use the skills in one project only, copy them into that project's `.agents/skills/` instead. To pick up new versions with `git pull`, symlink the folders instead of copying them.

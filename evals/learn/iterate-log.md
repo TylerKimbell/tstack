@@ -47,7 +47,7 @@ after round 1 (rule 1), round 2 (rule 1), round 6 (rule 4), and round 7 (report 
   - [direct][low] `opus`: a sandbox you already have access to.
   - [direct][low] `opus`: the one-off line marks partial reads too.
   - [direct][low] `haiku`: "the `unslop` skill". Smaller-model clarity fix, not contradicted;
-    `sonnet` also reported not loading it. Left out the `tstack:` prefix, which is
+    `sonnet` also reported not loading it. Left out the `tystack:` prefix, which is
     platform-specific.
   - Not applied, smaller model only and not clarity problems: `haiku` how to reach an owner's
     docs [high], answering pushback the source doesn't cover [high], search before asking

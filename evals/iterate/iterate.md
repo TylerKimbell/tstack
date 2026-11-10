@@ -20,7 +20,7 @@ comparable specs, briefs, and scores.
 would do the same thing, whether it fits the requests it should handle and declines the
 ones it shouldn't, and its length.
 
-**Out of scope:** the tstack README, the other skills, and the plugin manifests, except
+**Out of scope:** the tystack README, the other skills, and the plugin manifests, except
 that the README row must still describe the skill.
 
 **Fix directly:** wording, step order, examples, and a missing instruction that serves
