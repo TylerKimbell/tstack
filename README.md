@@ -9,6 +9,8 @@ Agent skills that work in any project without setup. Install them once and use t
 | `bro` | Restates the agent's previous reply in plain words and keeps the numbers, paths, and next steps. Add text to restate only one part. | On request only |
 | `learn` | Teaches a topic goal by goal from verified sources and checks your understanding with a scenario after each goal. Say `learn X from Y`, where Y is a source to read or an owner (a company, product, or framework) whose docs define X. | Automatic, or on request |
 | `iterate` | Improves anything in repeatable rounds, one testing flow at a time: a user walkthrough (a manager setting something up, a new hire using it), a cosmetic review, or a dry run of a skill. A fresh subagent runs the flow and scores it from 1 to 10 against that flow's rubric, then the agent fixes what's in scope and reruns toward a target score. Changes to what the thing is for go to the owner. | Automatic, or on request |
+| `reflect` | Reviews a session and turns the method that worked into a skill: a new one, or an edit to one that exists. It reads the transcript, separates steps that would recur from details of that one case, checks existing skills for overlap, and proposes the skill before writing it. Say `reflect`, or `reflect on <session>` for another session in Claude Code. | Automatic, or on request |
+| `skill-cost` | Measures what a skill costs to run: totals tokens across its recent runs and helper agents, finds what drives the cost, ranks cheaper changes, and tests the chosen one side by side, read-only, before anything is edited. Its scripts read Claude Code transcripts. | Automatic, or on request |
 | `postman` | Builds importable Postman Collection v2.1 files: one request, additions to an existing collection, or a full workflow. It checks each request against the API source and keeps credentials out of shareable files. Runs when you ask for a Postman request or collection. | Automatic, or on request |
 
 ## Install on claude.ai
@@ -19,7 +21,7 @@ Add the plugin to your Claude account once, and you get it in chat, Cowork, and 
 2. Select **Add > Add marketplace**, then enter `TylerKimbell/tystack`.
 3. On **Discover**, select `tystack`, then select **Add**.
 
-Claude loads `unslop`, `learn`, `iterate`, and `postman` when the task calls for them. To run `bro` or `technical-writing`, type `/tystack` in the message box and select the skill.
+Claude loads `unslop`, `learn`, `iterate`, `reflect`, `skill-cost`, and `postman` when the task calls for them. To run `bro` or `technical-writing`, type `/tystack` in the message box and select the skill.
 
 Claude Code downloads the plugin the next time you start a session signed in to the same account. In a session that is already open, run `/reload-plugins` to load it.
 
@@ -79,7 +81,7 @@ The skills follow your project's instructions (`AGENTS.md`, `CLAUDE.md`, or a ho
 
 ## Change a skill
 
-Each skill is a `SKILL.md`, plus supporting files it loads (such as `iterate`'s `templates.md`) and `agents/openai.yaml` for Codex settings where needed. Bump `version` in `.claude-plugin/plugin.json` when you change behavior, so installed copies pick up the update. Check the manifests with `claude plugin validate .`.
+Each skill is a `SKILL.md`, plus supporting files it loads (such as `iterate`'s `templates.md` or `reflect`'s `scripts/digest.py`) and `agents/openai.yaml` for Codex settings where needed. Bump `version` in `.claude-plugin/plugin.json` when you change behavior, so installed copies pick up the update. Check the manifests with `claude plugin validate .`.
 
 `evals/<skill>/` holds the `iterate` spec, fixtures, and checks for improving a skill with `iterate`. Claude never loads these files as part of a skill. Run `python3 evals/<skill>/check.py` before each round.
 

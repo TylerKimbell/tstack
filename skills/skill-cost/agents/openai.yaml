@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Cost"
+  short_description: "Measure a skill's token cost and test cheaper ways to run it"
+  default_prompt: "Use $skill-cost to measure what this skill's recent runs cost, find what drives the cost, and test a cheaper change side by side before editing anything."

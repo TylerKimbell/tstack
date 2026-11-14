@@ -1,11 +1,11 @@
 {
   "name": "tystack",
-  "version": "0.3.1",
-  "description": "General-purpose agent skills that work in any project: cut AI tells from writing, review technical docs, restate a reply plainly, teach a topic from verified sources, improve anything in repeatable scored rounds, and package API calls as Postman collections.",
+  "version": "0.4.0",
+  "description": "General-purpose agent skills that work in any project: cut AI tells from writing, review technical docs, restate a reply plainly, teach a topic from verified sources, improve anything in repeatable scored rounds, turn a session's work into a skill, cut what a skill costs to run, and package API calls as Postman collections.",
   "author": {
     "name": "Tyler Kimbell"
   },
   "repository": "https://github.com/TylerKimbell/tystack",
   "license": "MIT",
-  "keywords": ["writing", "style", "documentation", "postman", "api", "learning", "iteration", "testing"]
+  "keywords": ["writing", "style", "documentation", "postman", "api", "learning", "iteration", "testing", "skills", "reflection", "cost", "tokens"]
 }
