@@ -1,0 +1,13 @@
+{
+  "_note": "Copy this file outside the skill, fill in current prices per million tokens, and pass it with --rates. In Claude Code, the claude-api skill has them: look in its notes on prompt caching for the cache-write (5-minute and 1-hour) and cache-read prices, which differ by model. Keys under models are matched as substrings of the model id. A long_context entry replaces the whole entry for calls above its threshold. Cross-check the result against the cost Claude Code records for the session, which run_tokens.py prints. Every price below is a placeholder, not a real price.",
+  "as_of": "YYYY-MM-DD",
+  "models": {
+    "opus": {"input": 0.0, "output": 0.0, "cache_write_5m": 0.0, "cache_write_1h": 0.0, "cache_read": 0.0},
+    "sonnet": {"input": 0.0, "output": 0.0, "cache_write_5m": 0.0, "cache_write_1h": 0.0, "cache_read": 0.0},
+    "haiku": {
+      "input": 0.0, "output": 0.0, "cache_write_5m": 0.0, "cache_write_1h": 0.0, "cache_read": 0.0,
+      "long_context": {"above_tokens": 100000, "input": 0.0, "output": 0.0,
+                       "cache_write_5m": 0.0, "cache_write_1h": 0.0, "cache_read": 0.0}
+    }
+  }
+}

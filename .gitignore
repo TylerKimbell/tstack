@@ -1,2 +1,6 @@
 .DS_Store
 Thumbs.db
+__pycache__/
+
+# Local, private eval fixtures (real transcripts). Never commit.
+evals/*/local/

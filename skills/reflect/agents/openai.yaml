@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reflect"
+  short_description: "Turn a session's work into a new or updated skill"
+  default_prompt: "Use $reflect to review this session, find the method that worked, and propose a new skill or an edit to an existing one."
