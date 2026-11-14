@@ -62,8 +62,9 @@ sources.
   key; never rerun a whole source in the main session.
 - Move a cursor or a "last read" mark only on a `complete` coverage line. A `partial` or
   `failed` line, or a query with no coverage line, is a gap to report.
-- Where the agent can't choose a helper's model, the main session reads the sources itself
-  under the same rules.
+- Where the agent can't choose a helper's model, start helpers on the model it has: the
+  split still keeps the reading out of the main session. Where it has no helper agents,
+  the main session reads the sources itself under the same rules.
 
 ## What side-by-side tests of this pattern tend to find
 

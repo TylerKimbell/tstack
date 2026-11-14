@@ -64,7 +64,8 @@ checks reflect's frontmatter (name, description under 1024 characters), that
 `agents/openai.yaml` names `$reflect`, that the plugin manifests parse, that the README
 has a row for reflect, that `digest.py` compiles and digests every fixture transcript into
 at least one turn with a files section, that `local/` is ignored and nothing in it is
-tracked, and that the run log lives only in `iterate-log.md`.
+tracked, and that the run log lives only in `iterate-log.md`. In a clone with no `local/`
+folder it skips the fixture checks and says so; supply the fixtures before a round.
 
 ---
 

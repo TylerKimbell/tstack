@@ -33,7 +33,7 @@ REPORT_KEYS = ("report", "message", "content", "text", "result")
 
 
 def records(path):
-    with open(path) as f:
+    with open(path, encoding="utf-8", errors="replace") as f:
         for line in f:
             try:
                 yield json.loads(line)
@@ -81,7 +81,7 @@ def best_pair(brief, folder):
         name = os.path.basename(path)[: -len(".brief.md")]
         if name.count(".") or not lines:   # skip briefs saved by an earlier --pair
             continue
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             theirs = {l.strip() for l in f.read().splitlines() if len(l.strip()) > 20}
         overlap = len(lines & theirs) / max(1, len(theirs))
         if overlap > score:
@@ -114,7 +114,7 @@ def main():
     found = 0
     for sp in sorted(glob.glob(os.path.join(folder, "*.jsonl"))):
         try:
-            with open(sp[:-6] + ".meta.json") as f:
+            with open(sp[:-6] + ".meta.json", encoding="utf-8") as f:
                 desc = json.load(f).get("description", "")
         except (OSError, ValueError):
             desc = os.path.basename(sp)[:-6]
@@ -129,9 +129,11 @@ def main():
                 name, brief_file = paired, f"{paired}.{args.suffix}.brief.md"
             else:
                 print(f"{name}: no matching original brief in {args.out}; saved under its own name")
-        with open(os.path.join(args.out, brief_file), "w") as f:
+        with open(os.path.join(args.out, brief_file), "w", encoding="utf-8",
+                  newline="\n") as f:
             f.write(brief)
-        with open(os.path.join(args.out, f"{name}.{args.suffix}.md"), "w") as f:
+        with open(os.path.join(args.out, f"{name}.{args.suffix}.md"), "w", encoding="utf-8",
+                  newline="\n") as f:
             f.write(report)
         found += 1
         print(f"{name}: brief {len(brief):,} chars, report {len(report):,} chars ({where})")

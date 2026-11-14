@@ -45,9 +45,10 @@ python3 <skill dir>/scripts/digest.py --list                                   #
 python3 <skill dir>/scripts/digest.py <id or local_ id or path> --out <scratch dir>/digest.md
 ```
 
-It takes a transcript path, a transcript id from `--list`, or a desktop app session id
-(`local_...`, from the app's session list). If it can't find the session, ask the user to
-export the transcript from the app and pass the `.jsonl` path.
+It takes a transcript path, a transcript id from `--list`, or, on macOS, a desktop app
+session id (`local_...`, from the app's session list). On other systems, find the session
+by its title with `--list`. If it can't find the session, ask the user to export the
+transcript from the app and pass the `.jsonl` path.
 
 **Elsewhere** (Codex, chat): the script reads only Claude Code transcripts. Work from the
 conversation in context, or ask the user to paste or attach the other session. Say if the

@@ -26,13 +26,23 @@ from datetime import datetime
 # Where Claude Code keeps transcripts: <config dir>/projects/<project slug>/<id>.jsonl
 CONFIG_DIR = os.environ.get("CLAUDE_CONFIG_DIR", os.path.expanduser("~/.claude"))
 PROJECTS = os.path.join(CONFIG_DIR, "projects")
-# Where the Claude desktop app records its sessions (macOS). Each record names the
-# transcript id as cliSessionId. Other platforms fall back to the transcript id.
+# Where the Claude desktop app records its sessions on macOS. Each record names the
+# transcript id as cliSessionId. On other platforms a local_ id can't be resolved, so the
+# session is found by its transcript id or title from --list.
 APP_SESSIONS = os.path.expanduser(
     "~/Library/Application Support/Claude/claude-code-sessions"
 )
 
 REMINDER = re.compile(r"<system-reminder>.*?</system-reminder>", re.S)
+
+
+def utf8_output():
+    """Print UTF-8 on every console, so non-ASCII text never crashes a report on Windows."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except AttributeError:
+            pass
 
 
 # --- Finding the transcript -------------------------------------------------------
@@ -48,7 +58,7 @@ def app_record(local_id):
     hits = glob.glob(os.path.join(APP_SESSIONS, "**", local_id + ".json"), recursive=True)
     if not hits:
         return None
-    with open(hits[0]) as f:
+    with open(hits[0], encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -64,8 +74,9 @@ def resolve(session):
     if session.startswith("local_"):
         rec = app_record(session)
         if not rec:
-            sys.exit(f"No desktop app record for {session}. Export the session's "
-                     "transcript from the app and pass the .jsonl path instead.")
+            sys.exit(f"No desktop app record for {session} (local_ ids resolve on macOS "
+                     "only). Run --list and pass the transcript id, or export the "
+                     "session's transcript from the app and pass the .jsonl path.")
         for key in ("cliSessionId", "lastAssistantCliSessionId"):
             path = rec.get(key) and transcript_for_id(rec[key])
             if path:
@@ -81,7 +92,7 @@ def resolve(session):
 
 def records(path):
     """Yield the transcript's records, skipping lines that are not valid JSON."""
-    with open(path) as f:
+    with open(path, encoding="utf-8", errors="replace") as f:
         for line in f:
             try:
                 yield json.loads(line)
@@ -356,6 +367,7 @@ def main():
                          "which also prints tool inputs in full")
     ap.add_argument("--out", help="write the digest here instead of stdout")
     args = ap.parse_args()
+    utf8_output()
 
     if args.list:
         list_recent(args.limit)
@@ -365,7 +377,7 @@ def main():
     turns = parse_turns(args.turns) if args.turns else None
     digest = build(resolve(args.session), args.max_text, turns)
     if args.out:
-        with open(args.out, "w") as f:
+        with open(args.out, "w", encoding="utf-8", newline="\n") as f:
             f.write(digest)
         print(f"Wrote {args.out} ({len(digest)} chars)")
     else:

@@ -36,12 +36,21 @@ USAGE_KEYS = ("input_tokens", "cache_creation_input_tokens", "cache_read_input_t
               "output_tokens")
 
 
+def utf8_output():
+    """Print UTF-8 on every console, so non-ASCII text never crashes a report on Windows."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except AttributeError:
+            pass
+
+
 # --- Reading transcripts ----------------------------------------------------------
 
 def load(path):
     """Return a transcript's records, skipping lines that are not valid JSON."""
     out = []
-    with open(path) as f:
+    with open(path, encoding="utf-8", errors="replace") as f:
         for line in f:
             try:
                 out.append(json.loads(line))
@@ -72,7 +81,8 @@ def cutoff_for(entries):
     """Timestamp of the first message a person typed after the opening one, or None."""
     seen_first = False
     for d in entries:
-        if d.get("type") != "user" or d.get("isSidechain"):
+        # Injected records (a command caveat, a reminder) are not the opening message.
+        if d.get("type") != "user" or d.get("isSidechain") or d.get("isMeta"):
             continue
         c = (d.get("message") or {}).get("content")
         if isinstance(c, list) and all(isinstance(x, dict) and x.get("type") == "tool_result"
@@ -165,7 +175,7 @@ def tally(entries, cutoff=None):
 def meta_description(transcript):
     meta = transcript[:-6] + ".meta.json"
     try:
-        with open(meta) as f:
+        with open(meta, encoding="utf-8") as f:
             return json.load(f).get("description", "")
     except (OSError, ValueError):
         return ""
@@ -351,10 +361,11 @@ def main():
     ap.add_argument("--helpers", metavar="DIR", help="total helper transcripts in DIR instead")
     ap.add_argument("--match", help="with --helpers: only descriptions containing this text")
     args = ap.parse_args()
+    utf8_output()
 
     rates = None
     if args.rates:
-        with open(args.rates) as f:
+        with open(args.rates, encoding="utf-8") as f:
             rates = json.load(f)
     if args.helpers:
         report_helpers(args.helpers, args.match, rates)

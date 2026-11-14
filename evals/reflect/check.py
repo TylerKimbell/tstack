@@ -1,6 +1,10 @@
 """Checks for the reflect eval. Run from the repository root before every round.
 
 Exits non-zero and names what failed, so a round never starts on a broken skill.
+
+The fixtures are private transcripts in evals/reflect/local/, which git ignores. A clone
+without that folder (a fresh clone, CI) skips the fixture checks and says so; a round
+still needs them.
 """
 
 import json
@@ -65,12 +69,13 @@ if readme and "| `reflect` |" not in readme:
 script = SKILL / "scripts/digest.py"
 if subprocess.run([sys.executable, "-m", "py_compile", str(script)]).returncode:
     failures.append("scripts/digest.py does not compile")
+HAVE_FIXTURES = LOCAL.is_dir()
 sessions = sorted((LOCAL / "sessions").glob("*.jsonl"))
-if not sessions:
+if HAVE_FIXTURES and not sessions:
     failures.append("no fixture transcripts in evals/reflect/local/sessions/")
 for path in sessions:
     run = subprocess.run([sys.executable, str(script), str(path)],
-                         capture_output=True, text=True)
+                         capture_output=True, text=True, encoding="utf-8", errors="replace")
     out = run.stdout
     turns = re.search(r"^- User turns: (\d+)", out, re.M)
     if run.returncode or not turns or int(turns.group(1)) < 1:
@@ -79,11 +84,12 @@ for path in sessions:
         failures.append(f"digest of {path.name} has no files section")
 
 # Every file the spec's fixtures depend on must exist.
-for rel in ("sessions.md", "artifacts/run_tokens.py"):
-    if not (LOCAL / rel).is_file():
-        failures.append(f"evals/reflect/local/{rel} is missing")
-if not list((LOCAL / "heldout").glob("*.jsonl")):
-    failures.append("no held-out runs in evals/reflect/local/heldout/")
+if HAVE_FIXTURES:
+    for rel in ("sessions.md", "artifacts/run_tokens.py"):
+        if not (LOCAL / rel).is_file():
+            failures.append(f"evals/reflect/local/{rel} is missing")
+    if not list((LOCAL / "heldout").glob("*.jsonl")):
+        failures.append("no held-out runs in evals/reflect/local/heldout/")
 
 # The private fixtures must be ignored and untracked.
 if git("check-ignore", "-q", "evals/reflect/local/sessions.md").returncode:
@@ -103,4 +109,7 @@ if failures:
     for item in failures:
         print(f"- {item}")
     sys.exit(1)
-print("OK: reflect checks pass")
+if not HAVE_FIXTURES:
+    print("OK: reflect checks pass (fixture checks skipped: no evals/reflect/local/ here)")
+else:
+    print("OK: reflect checks pass")

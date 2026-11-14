@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare which items two helper reports cover, by the item keys they cite.
+r"""Compare which items two helper reports cover, by the item keys they cite.
 
 Usage:
   report_keys.py --pattern REGEX A.md [B.md]
@@ -23,9 +23,18 @@ import re
 import sys
 
 
+def utf8_output():
+    """Print UTF-8 on every console, so non-ASCII text never crashes a report on Windows."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except AttributeError:
+            pass
+
+
 def keys(path, pat):
     """The unique whole matches in a file (whole match, so groups in the pattern don't matter)."""
-    with open(path) as f:
+    with open(path, encoding="utf-8", errors="replace") as f:
         return {m.group(0) for m in pat.finditer(f.read())}
 
 
@@ -51,6 +60,7 @@ def main():
     ap.add_argument("--pattern", required=True,
                     help="regex for one item key, one alternative per key shape")
     args = ap.parse_args()
+    utf8_output()
     pat = re.compile(args.pattern)
 
     if args.pair:
